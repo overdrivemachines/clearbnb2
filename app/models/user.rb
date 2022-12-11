@@ -22,6 +22,10 @@
 #  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string
 #  locked_at              :datetime
+#  full_name              :string
+#  uid                    :string
+#  provider               :string
+#  avatar_url             :string
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -29,5 +33,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable,
-         :omniauthable
+         :omniauthable, omniauth_providers: [:google_oauth2]
 end
