@@ -19,6 +19,9 @@ gem "sassc-rails"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# Authentication
+gem 'devise'
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
@@ -31,4 +34,7 @@ group :development do
   gem "rails-erd"
   # Preview emails
   gem "letter_opener"
+
+  # Format ERB Files
+  gem "erb-formatter"
 end
