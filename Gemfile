@@ -21,6 +21,7 @@ gem "sassc-rails"
 
 # Authentication
 gem 'devise'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
