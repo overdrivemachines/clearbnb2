@@ -34,4 +34,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable,
          :omniauthable, omniauth_providers: [:google_oauth2]
+
+  # Find or create a user based on data from 'auth'
+  # This method is called from omniauth_callbacks_controller.rb
+  # 'auth' is set to request.env['omniauth.auth']
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.full_name = auth.info.name # assuming user model has a name
+      user.avatar_url = auth.info.image # assuming user model has an image
+      user.skip_confirmation!
+    end
+  end
 end
