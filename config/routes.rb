@@ -1,6 +1,10 @@
 # == Route Map
 #
 #                                Prefix Verb     URI Pattern                                  Controller#Action
+#                     host_listings_new GET      /host/listings/new(.:format)                 host/listings#new
+#                    host_listings_edit GET      /host/listings/edit(.:format)                host/listings#edit
+#                   host_listings_index GET      /host/listings/index(.:format)               host/listings#index
+#                    host_listings_show GET      /host/listings/show(.:format)                host/listings#show
 #                      new_user_session GET      /users/sign_in(.:format)                     users/sessions#new
 #                          user_session POST     /users/sign_in(.:format)                     users/sessions#create
 #                  destroy_user_session DELETE   /users/sign_out(.:format)                    users/sessions#destroy
@@ -26,6 +30,9 @@
 #                                       POST     /users/unlock(.:format)                      users/unlocks#create
 
 Rails.application.routes.draw do
+  namespace :host do
+    resources :listings
+  end
   root "static_pages#index"
   devise_for :users, controllers: {
     confirmations: "users/confirmations",
