@@ -1,2 +1,31 @@
-<h1>Host::Listings#edit</h1>
-<p>Find me in app/views/host/listings/edit.html.erb</p>
+<h1>Edit
+  <%= @listing.title %></h1>
+<%= form_with model: [:host, @listing] do |form| %>
+  <% if @listing.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@listing.errors.count, "error") %>
+        prohibited this @listing from being saved:</h2>
+
+      <ul>
+        <% @listing.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :about, class: "form-label" %>
+    <%= form.text_area :about, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :max_guests, class: "form-label" %>
+    <%= form.number_field :max_guests, class: "form-control", in: 1..100, step: 1 %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
