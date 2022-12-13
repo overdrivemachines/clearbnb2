@@ -28,7 +28,7 @@
 #  avatar_url             :string
 #
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
+  has_many :listings, foreign_key: :host_id
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
