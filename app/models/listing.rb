@@ -15,7 +15,7 @@
 #  state         :string
 #  postal_code   :string
 #  country       :string
-#  status        :integer          default(0)
+#  status        :integer          default("draft")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
@@ -24,5 +24,5 @@ class Listing < ApplicationRecord
 
   validates :title, presence: true
   validates :max_guests, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
-  enum status: [:draft, :published]
+  enum status: [:draft, :published, :archived]
 end
