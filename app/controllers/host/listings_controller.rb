@@ -1,15 +1,16 @@
 class Host::ListingsController < ApplicationController
-  before_action set_listing, except: [:new, :create, :index]
+  before_action :set_listing, except: [:new, :create, :index]
 
   # GET /host/listings/new
   def new
     @listing = Listing.new
   end
 
+  # POST /host/listings
   def create
     @listing = current_user.listings.build(listing_create_params)
     if @listing.save
-      redirect_to @listing
+      redirect_to [:host, @listing]
     else
       flash.now[:errors] = @listing.errors.full_messages
       render :new, status: :unprocessable_entity
@@ -23,17 +24,19 @@ class Host::ListingsController < ApplicationController
   def update
     # address cannot be changed during update
     if @listing.update(listing_update_params)
-      redirect_to @listing
+      redirect_to [:host, @listing]
     else
       flash.now[:erros] = @listing.errors.full_messages
       render :edit, status: :unprocessable_entity
     end
   end
 
+  # GET /host/listings
   def index
     @listings = current_user.listings
   end
 
+  # GET /host/listings/:id
   def show; end
 
   # DELETE /host/listings/:id
@@ -55,6 +58,6 @@ class Host::ListingsController < ApplicationController
   end
 
   def set_listing
-    @listing = current_user.listing.find(params[:id])
+    @listing = current_user.listings.find(params[:id])
   end
 end
