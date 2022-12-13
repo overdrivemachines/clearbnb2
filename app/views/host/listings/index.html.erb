@@ -1,2 +1,4 @@
-<h1>Host::Listings#index</h1>
-<p>Find me in app/views/host/listings/index.html.erb</p>
+<h1>Your Listings</h1>
+<% @listings.each do |listing| %>
+  <%= link_to listing.title, host_listing_path(listing) %>
+<% end %>
