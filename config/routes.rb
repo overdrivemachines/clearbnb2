@@ -1,10 +1,14 @@
 # == Route Map
 #
 #                                Prefix Verb     URI Pattern                                  Controller#Action
-#                     host_listings_new GET      /host/listings/new(.:format)                 host/listings#new
-#                    host_listings_edit GET      /host/listings/edit(.:format)                host/listings#edit
-#                   host_listings_index GET      /host/listings/index(.:format)               host/listings#index
-#                    host_listings_show GET      /host/listings/show(.:format)                host/listings#show
+#                         host_listings GET      /host/listings(.:format)                     host/listings#index
+#                                       POST     /host/listings(.:format)                     host/listings#create
+#                      new_host_listing GET      /host/listings/new(.:format)                 host/listings#new
+#                     edit_host_listing GET      /host/listings/:id/edit(.:format)            host/listings#edit
+#                          host_listing GET      /host/listings/:id(.:format)                 host/listings#show
+#                                       PATCH    /host/listings/:id(.:format)                 host/listings#update
+#                                       PUT      /host/listings/:id(.:format)                 host/listings#update
+#                                       DELETE   /host/listings/:id(.:format)                 host/listings#destroy
 #                      new_user_session GET      /users/sign_in(.:format)                     users/sessions#new
 #                          user_session POST     /users/sign_in(.:format)                     users/sessions#create
 #                  destroy_user_session DELETE   /users/sign_out(.:format)                    users/sessions#destroy
