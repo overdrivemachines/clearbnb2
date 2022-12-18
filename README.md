@@ -104,3 +104,4 @@ psql
   - https://www.youtube.com/watch?v=Lut1C6CHDCE
   - Devise Google Login With Omniauth - https://www.youtube.com/watch?v=CnZnwV38cjo
 - Google SSO - https://blog.devgenius.io/how-to-add-google-sign-in-sso-with-devise-to-a-ruby-on-rails-7-app-6d8c5ef7641b
+- Places Autocomplete - https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
