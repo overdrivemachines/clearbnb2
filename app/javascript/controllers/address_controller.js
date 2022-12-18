@@ -8,8 +8,15 @@ export default class extends Controller {
     console.log("Address controller is connected");
   }
 
-  initGoogle() {
+  // The following function gets executed only when function initMap() in my_script.js is executed
+  // and
+  // there is a div on the page that has attribute: data-action="mapLoadedEvent@window->address#initGoogle"
+  initGoogle(event) {
     // setup autocomplete
+    console.log("Google Maps is initialized and address controller knows about it");
+
+    // let addressField = document.querySelector("#listing_address");
+    // console.log(addressField);
   }
 
   placeSelected() {

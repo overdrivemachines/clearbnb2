@@ -21,26 +21,32 @@
     <%= form.text_area :about, class: "form-control" %>
   </div>
 
-  <div class="mb-3" data-controller="address">
-    <%= form.label :address %>
-    <%= form.text_field :address, autocomplete: "off" %>
-    <%# <input type="text" name="address" id="address" autocomplete="off"> %>
+  <%# Listen for mapLoadedEvent events. When that happens, execute initGoogle() function
+  in address controller. %>
+    <div
+      class="mb-3"
+      data-controller="address"
+      data-action="mapLoadedEvent@window->address#initGoogle"
+    >
+      <%= form.label :address %>
+      <%= form.text_field :address, autocomplete: "off" %>
+      <%# <input type="text" name="address" id="address" autocomplete="off"> %>
 
-    <%# The following hidden fields will be populated by data we receive from Google %>
-    <%= form.hidden_field :address_line1 %>
-    <%= form.hidden_field :address_line2 %>
-    <%= form.hidden_field :city %>
-    <%= form.hidden_field :state %>
-    <%= form.hidden_field :postal_code %>
-    <%= form.hidden_field :country %>
-    <%= form.hidden_field :latitude %>
-    <%= form.hidden_field :longitude %>
-  </div>
+      <%# The following hidden fields will be populated by data we receive from Google %>
+      <%= form.hidden_field :address_line1 %>
+      <%= form.hidden_field :address_line2 %>
+      <%= form.hidden_field :city %>
+      <%= form.hidden_field :state %>
+      <%= form.hidden_field :postal_code %>
+      <%= form.hidden_field :country %>
+      <%= form.hidden_field :latitude %>
+      <%= form.hidden_field :longitude %>
+    </div>
 
-  <div class="mb-3">
-    <%= form.label :max_guests, class: "form-label" %>
-    <%= form.number_field :max_guests, class: "form-control", in: 1..100, step: 1 %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :max_guests, class: "form-label" %>
+      <%= form.number_field :max_guests, class: "form-control", in: 1..100, step: 1 %>
+    </div>
 
-  <%= form.submit %>
-<% end %>
+    <%= form.submit %>
+  <% end %>
