@@ -29,18 +29,18 @@
       data-action="mapLoadedEvent@window->address#initGoogle"
     >
       <%= form.label :address %>
-      <%= form.text_field :address, autocomplete: "off" %>
+      <%= form.text_field :address, autocomplete: "off", data: {"address-target": "input"} %>
       <%# <input type="text" name="address" id="address" autocomplete="off"> %>
 
       <%# The following hidden fields will be populated by data we receive from Google %>
-      <%= form.hidden_field :address_line1 %>
-      <%= form.hidden_field :address_line2 %>
-      <%= form.hidden_field :city %>
-      <%= form.hidden_field :state %>
-      <%= form.hidden_field :postal_code %>
-      <%= form.hidden_field :country %>
-      <%= form.hidden_field :latitude %>
-      <%= form.hidden_field :longitude %>
+      <%= form.hidden_field :address_line1, data: {"address-target": "address_line1"} %>
+      <%= form.hidden_field :address_line2, data: {"address-target": "address_line2"} %>
+      <%= form.hidden_field :city, data: {"address-target": "city"} %>
+      <%= form.hidden_field :state, data: {"address-target": "state"} %>
+      <%= form.hidden_field :postal_code, data: {"address-target": "postal_code"} %>
+      <%= form.hidden_field :country, data: {"address-target": "country"} %>
+      <%= form.hidden_field :latitude, data: {"address-target": "latitude"} %>
+      <%= form.hidden_field :longitude, data: {"address-target": "longitude"} %>
     </div>
 
     <div class="mb-3">
