@@ -1,7 +1,17 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["input"];
+  static targets = [
+    "input",
+    "address_line1",
+    "address_line2",
+    "city",
+    "state",
+    "postal_code",
+    "country",
+    "latitude",
+    "longitude",
+  ];
   connect() {
     // this gets executed when there is a html element that has attribute
     // data-controller="address"
@@ -18,6 +28,8 @@ export default class extends Controller {
 
     // let addressField = document.querySelector("#listing_address");
     // console.log(addressField);
+
+    // this.inputTarget refers to the html element having attribute: data-address-target="input"
 
     this.autocomplete = new google.maps.places.Autocomplete(this.inputTarget, {
       componentRestrictions: { country: ["us", "ca"] },
@@ -67,24 +79,31 @@ export default class extends Controller {
           break;
         }
         case "locality":
-          document.querySelector("#listing_city").value = component.long_name;
+          // document.querySelector("#listing_city").value = component.long_name;
+          this.cityTarget.value = component.long_name;
           break;
         case "administrative_area_level_1": {
-          document.querySelector("#listing_state").value = component.short_name;
+          // document.querySelector("#listing_state").value = component.short_name;
+          this.stateTarget.value = component.short_name;
           break;
         }
         case "country":
-          document.querySelector("#listing_country").value = component.long_name;
+          // document.querySelector("#listing_country").value = component.long_name;
+          this.countryTarget.value = component.long_name;
           break;
       }
     }
 
     // Updating Address Line 1 and Postal Code in the form
-    document.querySelector("#listing_address_line1").value = address1;
-    document.querySelector("#listing_postal_code").value = postcode;
+    // document.querySelector("#listing_address_line1").value = address1;
+    this.address_line1Target.value = address1;
+    // document.querySelector("#listing_postal_code").value = postcode;
+    this.postal_codeTarget.value = postcode;
 
     // Updating Latitude and Longitude in the form
-    document.querySelector("#listing_latitude").value = place.geometry.location.lat();
-    document.querySelector("#listing_longitude").value = place.geometry.location.lng();
+    // document.querySelector("#listing_latitude").value = place.geometry.location.lat();
+    this.latitudeTarget.value = place.geometry.location.lat();
+    // document.querySelector("#listing_longitude").value = place.geometry.location.lng();
+    this.longitudeTarget.value = place.geometry.location.lng();
   }
 }
