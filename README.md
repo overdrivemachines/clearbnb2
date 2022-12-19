@@ -105,3 +105,8 @@ psql
   - Devise Google Login With Omniauth - https://www.youtube.com/watch?v=CnZnwV38cjo
 - Google SSO - https://blog.devgenius.io/how-to-add-google-sign-in-sso-with-devise-to-a-ruby-on-rails-7-app-6d8c5ef7641b
 - Places Autocomplete - https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+- Format .rb files with prettier - https://github.com/prettier/plugin-ruby/issues/113
+  ```sh
+  cd ~/.vscode/extensions/esbenp.prettier-vscode-1.8.1/
+  npm install @prettier/plugin-ruby
+  ```
