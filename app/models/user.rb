@@ -30,10 +30,17 @@
 class User < ApplicationRecord
   has_many :listings, foreign_key: :host_id
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :confirmable, :lockable, :timeoutable, :trackable,
-         :omniauthable, omniauth_providers: [:google_oauth2]
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :validatable,
+         :confirmable,
+         :lockable,
+         :timeoutable,
+         :trackable,
+         :omniauthable,
+         omniauth_providers: [:google_oauth2]
 
   # Find or create a user based on data from 'auth'
   # This method is called from omniauth_callbacks_controller.rb
