@@ -1,80 +1,68 @@
-<div class="min-h-screen bg-white flex">
-  <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-    <div class="mx-auto w-full max-w-sm lg:w-96">
-      <div>
-        <%= image_tag "logo.png", class: "h-12 w-auto", alt: "Clearbnb"  %>
-        <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
-          Create a new account
-        </h2>
-      </div>
-      <%= render "devise/shared/error_messages", resource: resource %>
-      <div class="mt-8">
+<h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+  Create a new account
+</h2>
+<%= render "devise/shared/error_messages", resource: resource %>
+<div class="mt-8">
+  <div>
+    <div>
+      <p class="text-sm font-medium text-gray-700">
+        Register with
+      </p>
+      <div class="mt-1 grid grid-cols-1 gap-1">
         <div>
-          <div>
-            <p class="text-sm font-medium text-gray-700">
-              Register with
-            </p>
-            <div class="mt-1 grid grid-cols-1 gap-1">
-              <div>
-                <%- if devise_mapping.omniauthable? %>
-                  <%- resource_class.omniauth_providers.each do |provider| %>
-                    <%= form_for "Login",
-                    url: omniauth_authorize_path(resource_name, provider),
-                    method: :post,
-                    data: {turbo: "false"} do |f| %>
-                      <%# link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post %>
-                      <%# f.submit "Login", type: "image", src: url_for("/assets/google/btn_google_signin_light_normal_web.png") %>
-                      <%= f.submit "Google", class: "w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" %>
-                      <%# image_submit_tag "google/btn_google_signin_light_normal_web.png" %>
-                    <% end %>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <div class="mt-6 relative">
-            <div class="absolute inset-0 flex items-center" aria-hidden="true">
-              <div class="w-full border-t border-gray-300"></div>
-            </div>
-            <div class="relative flex justify-center text-sm">
-              <span class="px-2 bg-white text-gray-500">
-                Or continue with
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-6">
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: :false}, html: { class: "space-y-6" }) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
-            <div class="field">
-              <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-            </div>
-            <div class="field space-y-1">
-              <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
-              <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %>
-                  characters minimum)</em>
-              <% end %><br/>
-              <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-            </div>
-            <div class="field">
-              <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-            </div>
-            <div class="actions">
-              <%= f.submit "Register", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-            </div>
-            <div class="text-sm space-y-4">
-              <%= render "devise/shared/links" %>
-            </div>
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <%= form_for "Login",
+              url: omniauth_authorize_path(resource_name, provider),
+              method: :post,
+              data: {turbo: "false"} do |f| %>
+                <%# link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post %>
+                <%# f.submit "Login", type: "image", src: url_for("/assets/google/btn_google_signin_light_normal_web.png") %>
+                <%= f.submit "Google", class: "w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" %>
+                <%# image_submit_tag "google/btn_google_signin_light_normal_web.png" %>
+              <% end %>
+            <% end %>
           <% end %>
         </div>
       </div>
     </div>
+    <div class="mt-6 relative">
+      <div class="absolute inset-0 flex items-center" aria-hidden="true">
+        <div class="w-full border-t border-gray-300"></div>
+      </div>
+      <div class="relative flex justify-center text-sm">
+        <span class="px-2 bg-white text-gray-500">
+          Or continue with
+        </span>
+      </div>
+    </div>
   </div>
-  <div class="hidden lg:block relative w-0 flex-1">
-    <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="">
+
+  <div class="mt-6">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: :false}, html: { class: "space-y-6" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="field">
+        <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      </div>
+      <div class="field space-y-1">
+        <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %>
+            characters minimum)</em>
+        <% end %><br/>
+        <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Register", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      </div>
+      <div class="text-sm space-y-4">
+        <%= render "devise/shared/links" %>
+      </div>
+    <% end %>
   </div>
 </div>

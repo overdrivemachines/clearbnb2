@@ -13,14 +13,19 @@
       src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google.maps %>&libraries=places&callback=initMap"
       defer
       data-turbolinks-eval="false"
-    >
-    </script>
+    ></script>
 
   </head>
 
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <%# controller_name %>
+    <%# action_name %>
+    <% if ["sessions", "registrations", "passwords", "confirmations", "unlocks"].include?(controller_name) %>
+      <%= render "layouts/devise" %>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
