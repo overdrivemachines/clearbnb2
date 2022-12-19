@@ -1,5 +1,6 @@
 class Host::ListingsController < ApplicationController
-  before_action :set_listing, except: [:new, :create, :index]
+  before_action :set_listing, except: %i[new create index]
+  before_action :authenticate_user!, except: %i[index show]
 
   # GET /host/listings/new
   def new
@@ -18,7 +19,8 @@ class Host::ListingsController < ApplicationController
   end
 
   # GET /host/listings/:id/edit
-  def edit; end
+  def edit
+  end
 
   # PUT/PATCH /host/listings/:id
   def update
@@ -37,7 +39,8 @@ class Host::ListingsController < ApplicationController
   end
 
   # GET /host/listings/:id
-  def show; end
+  def show
+  end
 
   # DELETE /host/listings/:id
   def destroy
@@ -48,8 +51,7 @@ class Host::ListingsController < ApplicationController
   private
 
   def listing_create_params
-    params.require(:listing).permit(:title, :about, :max_guests, :address_line1, :address_line2,
-                                    :city, :state, :postal_code, :country, :latitude, :longitude)
+    params.require(:listing).permit(:title, :about, :max_guests, :address_line1, :address_line2, :city, :state, :postal_code, :country, :latitude, :longitude)
   end
 
   def listing_update_params
