@@ -1,7 +1,11 @@
 <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
   Resend confirmation instructions
 </h2>
-<%= render "devise/shared/error_messages", resource: resource %>
+<div class="mt-8">
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render "shared/errors" %>
+  <%= render "shared/notices" %>
+</div>
 
 <div class="mt-8">
 
