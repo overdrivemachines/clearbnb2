@@ -18,13 +18,13 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%# controller_name %>
     <%# action_name %>
     <% if ["sessions", "registrations", "passwords", "confirmations", "unlocks"].include?(controller_name) %>
       <%= render "layouts/devise" %>
     <% else %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <%= yield %>
     <% end %>
   </body>
