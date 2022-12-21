@@ -43,4 +43,7 @@ group :development do
 
   # Format ERB Files
   gem "erb-formatter"
+
+  # Add fake data to db
+  gem 'faker'
 end
