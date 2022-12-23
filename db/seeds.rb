@@ -12,7 +12,7 @@ user = User.find_by(email: "b@b.com")
   # Create listing
   listing =
     user.listings.create(
-      title: Faker::Company.catch_phrase,
+      title: (Faker::Science.modifier + " " + Faker::Science.element),
       about: Faker::Quote.jack_handey,
       max_guests: rand(2...10),
       address_line1: Faker::Address.street_address,
