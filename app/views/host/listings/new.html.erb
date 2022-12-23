@@ -1,5 +1,5 @@
-<h1>List your property</h1>
-<%= form_with model: [:host, @listing] do |form| %>
+<h1 class="text-3xl">List your property</h1>
+<%= form_with model: [:host, @listing], class: "space-y-8 divide-y divide-gray-200" do |form| %>
   <% if @listing.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@listing.errors.count, "error") %>
@@ -12,41 +12,41 @@
       </ul>
     </div>
   <% end %>
-  <div class="mb-3">
-    <%= form.label :title, class: "form-label" %>
-    <%= form.text_field :title, class: "form-control" %>
+  <div class="sm:col-span-6">
+    <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :title, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
   </div>
-  <div class="mb-3">
-    <%= form.label :about, class: "form-label" %>
-    <%= form.text_area :about, class: "form-control" %>
+  <div class="sm:col-span-6">
+    <%= form.label :about, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_area :about, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
   </div>
 
   <%# Listen for mapLoadedEvent events. When that happens, execute initGoogle() function
   in address controller. %>
-    <div
-      class="mb-3"
+  <div
+      class="sm:col-span-6"
       data-controller="address"
       data-action="mapLoadedEvent@window->address#initGoogle"
     >
-      <%= form.label :address %>
-      <%= form.text_field :address, autocomplete: "off", data: {"address-target": "input"} %>
-      <%# <input type="text" name="address" id="address" autocomplete="off"> %>
+    <%= form.label :address, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :address, autocomplete: "off", data: {"address-target": "input"}, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+    <%# <input type="text" name="address" id="address" autocomplete="off"> %>
 
-      <%# The following hidden fields will be populated by data we receive from Google %>
-      <%= form.hidden_field :address_line1, data: {"address-target": "address_line1"} %>
-      <%= form.hidden_field :address_line2, data: {"address-target": "address_line2"} %>
-      <%= form.hidden_field :city, data: {"address-target": "city"} %>
-      <%= form.hidden_field :state, data: {"address-target": "state"} %>
-      <%= form.hidden_field :postal_code, data: {"address-target": "postal_code"} %>
-      <%= form.hidden_field :country, data: {"address-target": "country"} %>
-      <%= form.hidden_field :latitude, data: {"address-target": "latitude"} %>
-      <%= form.hidden_field :longitude, data: {"address-target": "longitude"} %>
-    </div>
+    <%# The following hidden fields will be populated by data we receive from Google %>
+    <%= form.hidden_field :address_line1, data: {"address-target": "address_line1"} %>
+    <%= form.hidden_field :address_line2, data: {"address-target": "address_line2"} %>
+    <%= form.hidden_field :city, data: {"address-target": "city"} %>
+    <%= form.hidden_field :state, data: {"address-target": "state"} %>
+    <%= form.hidden_field :postal_code, data: {"address-target": "postal_code"} %>
+    <%= form.hidden_field :country, data: {"address-target": "country"} %>
+    <%= form.hidden_field :latitude, data: {"address-target": "latitude"} %>
+    <%= form.hidden_field :longitude, data: {"address-target": "longitude"} %>
+  </div>
 
-    <div class="mb-3">
-      <%= form.label :max_guests, class: "form-label" %>
-      <%= form.number_field :max_guests, class: "form-control", in: 1..100, step: 1 %>
-    </div>
+  <div class="sm:col-span-6">
+    <%= form.label :max_guests, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.number_field :max_guests, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", in: 1..100, step: 1 %>
+  </div>
 
-    <%= form.submit %>
-  <% end %>
+  <%= form.submit "Create Listing", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+<% end %>
