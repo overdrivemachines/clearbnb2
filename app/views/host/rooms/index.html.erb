@@ -8,20 +8,22 @@
       <div class="w-full flex items-center justify-between p-6 space-x-6">
         <div class="flex-1 truncate">
           <div class="flex items-center space-x-3">
-            <h3 class="text-gray-900 text-sm font-medium truncate"><%= room.room_type %></h3>
+            <h3 class="text-gray-900 text-sm font-medium truncate"><%= room.room_type.titleize %></h3>
             <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">
               <%= pluralize(room.beds.count, 'bed') %>
             </span>
           </div>
           <% room.beds.each do |bed| %>
-            <p class="mt-1 text-gray-500 text-sm truncate"><%= bed.bed_size %></p>
+            <p class="mt-1 text-gray-500 text-sm truncate"><%= bed.bed_size.titleize %></p>
           <% end %>
-          <%= button_to "Delete", host_listing_room_path(@listing, room), method: :delete %>
+          <%= button_to "Delete Room", host_listing_room_path(@listing, room), method: :delete, class: "flex justify-center py-2 px-4 mt-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
         </div>
       </div>
     </li>
   <% end %>
 </ul>
+
+<h1 class="text-2xl font-bold mb-4 mt-6">Create New Room</h1>
 
 <%# Form for creating a New Room %>
 <%= render partial: "form", locals: { listing: @listing, room: @room } %>
