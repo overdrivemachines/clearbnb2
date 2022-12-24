@@ -2,7 +2,7 @@
 <div data-controller="room">
   <%# Form for creating a New Room %>
   <%= form_with model: [:host, :listing, room] do |form| %>
-    <%= form.label :room_type, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.label :room_type, class: "mt-4 block text-sm font-medium text-gray-700" %>
     <%# form.collection_select :room_type, Room.room_types, :first, :first, {} , {class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"} %>
     <%= form.select :room_type, options_for_select(Room.room_types.map {|key, value| [key.titleize, key]}), {} , {class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"} %>
 
@@ -10,16 +10,19 @@
 
     <%# Called this.bedFieldsTarget in room_controller.js %>
     <template data-room-target="bedFields">
-      <%# Fields for creating a bed %>
-      <%= form.fields_for :beds do |bed_form| %>
-        <%# room[beds_attributes][0][bed_size] %>
-        <%= bed_form.label :bed_size, class: "block text-sm font-medium text-gray-700 mt-4" %>
-        <%# bed_form.text_field :bed_size %>
-        <%= bed_form.select :bed_size, options_for_select(Bed.bed_sizes.map {|key, value| [key.titleize, key]}), {}, {class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"} %>
-      <% end %>
+      <div class="select-bed-container">
+
+        <%# Fields for creating a bed %>
+        <%= form.fields_for :beds do |bed_form| %>
+          <%# room[beds_attributes][0][bed_size] %>
+          <%= bed_form.label :bed_size, class: "block text-sm font-medium text-gray-700 mt-4" %>
+          <%# bed_form.text_field :bed_size %>
+          <%= bed_form.select :bed_size, options_for_select(Bed.bed_sizes.map {|key, value| [key.titleize, key]}), {}, {class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"} %>
+        <% end %>
+      </div>
     </template>
 
-    <fieldset data-room-target="beds">
+    <fieldset data-room-target="beds" class="mt-4">
       <legend>Beds</legend>
     </fieldset>
 
