@@ -23,6 +23,8 @@ class Listing < ApplicationRecord
   belongs_to :host, class_name: "User"
   has_many :rooms
 
+  scope :published, -> { where(status: :published) }
+
   validates :title, presence: true
   validates :max_guests, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
   enum status: { draft: 0, published: 1, archived: 2 }
