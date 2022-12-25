@@ -9,9 +9,20 @@
           <h3 class="text-lg font-bold text-gray-800 dark:text-white">
             <%= listing.title %>
           </h3>
-          <small><%= listing.status.titleize %></small>
+          <%# Flowbite Badges https://flowbite.com/docs/components/badge/ %>
+          <% if listing.status == "draft" %>
+            <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900"><%= listing.status.titleize %></span>
+          <% elsif listing.status == "published" %>
+            <span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900"><%= listing.status.titleize %></span>
+          <% elsif listing.status == "archived" %>
+            <span class="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300"><%= listing.status.titleize %></span>
+          <% end %>
+
           <p class="mt-1 text-gray-800 dark:text-gray-400">
             <%= listing.about %>
+          </p>
+          <p class="mt-1 text-gray-800 dark:text-gray-400">
+            <%= listing.address %>
           </p>
           <div class="flex justify-between mt-4">
             <%= link_to "See Details", host_listing_path(listing), class: "py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
