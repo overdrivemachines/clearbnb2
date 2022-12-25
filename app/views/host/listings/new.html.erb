@@ -1,5 +1,5 @@
-<h1 class="text-3xl">List your property</h1>
-<%= form_with model: [:host, @listing], class: "space-y-8 divide-y divide-gray-200" do |form| %>
+<h1 class="text-2xl mb-4 font-bold">List your property</h1>
+<%= form_with model: [:host, @listing], class: "space-y-8" do |form| %>
   <% if @listing.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@listing.errors.count, "error") %>
@@ -23,13 +23,10 @@
 
   <%# Listen for mapLoadedEvent events. When that happens, execute initGoogle() function
   in address controller. %>
-  <div
-      class="sm:col-span-6"
-      data-controller="address"
-      data-action="mapLoadedEvent@window->address#initGoogle"
-    >
+  <div class="sm:col-span-6" data-controller="address"
+      data-action="mapLoadedEvent@window->address#initGoogle">
     <%= form.label :address, class: "block text-sm font-medium text-gray-700" %>
-    <%= form.text_field :address, autocomplete: "off", data: {"address-target": "input"}, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+    <%= form.text_field :address, autocomplete: "off", data: {"address-target": "input"}, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", value: "" %>
     <%# <input type="text" name="address" id="address" autocomplete="off"> %>
 
     <%# The following hidden fields will be populated by data we receive from Google %>
