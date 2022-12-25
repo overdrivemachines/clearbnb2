@@ -110,3 +110,6 @@ psql
   cd ~/.vscode/extensions/esbenp.prettier-vscode-1.8.1/
   npm install @prettier/plugin-ruby
   ```
+- Humanize Select from enum - https://dev.to/masroorhussainv/enum-dropdown-with-capitalized-values-in-rails-144j
+- Create new stimulus controller named room (room_controller.js)
+  `rails g stimulus room`
