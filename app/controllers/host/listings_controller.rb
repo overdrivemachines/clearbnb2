@@ -1,6 +1,6 @@
 class Host::ListingsController < ApplicationController
   before_action :set_listing, except: %i[new create index]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!
 
   # GET /host/listings/new
   def new
