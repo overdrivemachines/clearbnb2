@@ -1,17 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = [
-    "input",
-    "address_line1",
-    "address_line2",
-    "city",
-    "state",
-    "postal_code",
-    "country",
-    "latitude",
-    "longitude",
-  ];
+  static targets = ["input", "address_line1", "address_line2", "city", "state", "postal_code", "country", "latitude", "longitude"];
   connect() {
     // this gets executed when there is a html element that has attribute
     // data-controller="address"
@@ -30,7 +20,6 @@ export default class extends Controller {
     // console.log(addressField);
 
     // this.inputTarget refers to the html element having attribute: data-address-target="input"
-
     this.autocomplete = new google.maps.places.Autocomplete(this.inputTarget, {
       componentRestrictions: { country: ["us", "ca"] },
       fields: ["address_components", "geometry"],
