@@ -56,7 +56,7 @@ class Host::ListingsController < ApplicationController
 
   def listing_update_params
     # address cannot be changed on update
-    params.require(:listing).permit(:title, :about, :max_guests)
+    params.require(:listing).permit(:title, :about, :max_guests, :status)
   end
 
   def set_listing

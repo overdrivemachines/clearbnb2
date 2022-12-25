@@ -1,6 +1,5 @@
-<h1>Edit
-  <%= @listing.title %></h1>
-<%= form_with model: [:host, @listing] do |form| %>
+<h1 class="text-2xl font-bold mb-4">Edit Listing <%= @listing.title %></h1>
+<%= form_with model: [:host, @listing], class: "space-y-8" do |form| %>
   <% if @listing.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@listing.errors.count, "error") %>
@@ -13,19 +12,27 @@
       </ul>
     </div>
   <% end %>
-  <div class="mb-3">
-    <%= form.label :title, class: "form-label" %>
-    <%= form.text_field :title, class: "form-control" %>
+  <div class="sm:col-span-6">
+    <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :title, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
   </div>
-  <div class="mb-3">
-    <%= form.label :about, class: "form-label" %>
-    <%= form.text_area :about, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :max_guests, class: "form-label" %>
-    <%= form.number_field :max_guests, class: "form-control", in: 1..100, step: 1 %>
+  <div class="sm:col-span-6">
+    <%= form.label :about, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_area :about, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
   </div>
 
-  <%= form.submit %>
+  <div class="sm:col-span-6">
+    <%= form.label :max_guests, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.number_field :max_guests, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", in: 1..100, step: 1 %>
+  </div>
+
+  <div class="sm:col-span-6">
+    <%= form.label :status, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.select :status, options_for_select((Listing.statuses.map {|key, value| [key.titleize, key]}), @listing.status), {}, {class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"} %>
+  </div>
+
+  <div class="sm:col-span-6">
+    <%= form.submit class: "py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    <%= link_to "Cancel", host_listing_path(@listing), class: "ml-1 py-2 px-4 rounded-md border shadow-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" %>
+  </div>
 <% end %>
