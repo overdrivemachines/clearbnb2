@@ -12,7 +12,7 @@ user = User.find_by(email: "b@b.com")
   # Create listing
   listing =
     user.listings.create(
-      title: (Faker::Science.modifier + " " + Faker::Science.element),
+      title: ("House " + Faker::Science.modifier + " " + Faker::Science.element),
       about: Faker::Quote.jack_handey,
       max_guests: rand(2...10),
       address_line1: Faker::Address.street_address,
@@ -20,7 +20,7 @@ user = User.find_by(email: "b@b.com")
       state: Faker::Address.state,
       postal_code: Faker::Address.zip_code(state_abbreviation: "CA"),
       country: "United States",
-      status: :draft,
+      status: Listing.statuses.to_a.sample[0],
       latitude: Faker::Address.latitude,
       longitude: Faker::Address.longitude,
     )

@@ -1,4 +1,28 @@
+<h1><%= @listing.title %></h1>
+
+<p>
+  <%= @listing.city %>, <%= @listing.state %>
+</p>
+
+<p>
+  <%= @listing.about %>
+</p>
+
+<p>
+  <%= @listing.max_guests %>
+</p>
+
+Rooms:
+<ul>
+  <% @listing.rooms.each do |room| %>
+    <li>
+      <%= room.room_type.titleize %>. Number of beds: <%= room.beds.count %>
+    </li>
+  <% end %>
+</ul>
+
 <div>
-  <h1 class="font-bold text-4xl">Listings#show</h1>
-  <p>Find me in app/views/listings/show.html.erb</p>
+  <h2>Host</h2>
+  <%= @listing.host.full_name %> <br>
+  <%= @listing.host.email %>
 </div>
