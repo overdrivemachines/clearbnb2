@@ -28,4 +28,9 @@ class Listing < ApplicationRecord
   validates :title, presence: true
   validates :max_guests, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
   enum status: { draft: 0, published: 1, archived: 2 }
+
+  # Returns the full address in one line
+  def address
+    address_line2.blank? ? "#{address_line1} #{city}, #{state}" : "#{address_line1} #{address_line2} #{city}, #{state}"
+  end
 end
