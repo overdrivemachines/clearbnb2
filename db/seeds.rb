@@ -8,6 +8,12 @@
 
 user = User.find_by(email: "b@b.com")
 
+if user.nil?
+  user = User.new(email: "b@b.com", password: "manager", password_confirmation: "manager")
+  user.skip_confirmation!
+  user.save!
+end
+
 10.times do
   # Create listing
   listing =
