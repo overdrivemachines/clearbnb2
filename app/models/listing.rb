@@ -18,6 +18,9 @@
 #  status        :integer          default("draft")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  price         :integer
+#  nightly_price :integer
+#  cleaning_fee  :integer
 #
 class Listing < ApplicationRecord
   belongs_to :host, class_name: "User"
@@ -28,6 +31,8 @@ class Listing < ApplicationRecord
 
   validates :title, presence: true
   validates :max_guests, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
+  validates :nightly_price, numericality: { greater_than: 0 }
+  validates :cleaning_fee, numericality: { greater_than: 0 }
   enum status: { draft: 0, published: 1, archived: 2 }
 
   # Returns the full address in one line
