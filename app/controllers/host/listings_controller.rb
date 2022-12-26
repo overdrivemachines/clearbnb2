@@ -51,12 +51,26 @@ class Host::ListingsController < ApplicationController
   private
 
   def listing_create_params
-    params.require(:listing).permit(:title, :about, :max_guests, :address_line1, :address_line2, :city, :state, :postal_code, :country, :latitude, :longitude)
+    params.require(:listing).permit(
+      :title,
+      :about,
+      :max_guests,
+      :address_line1,
+      :address_line2,
+      :city,
+      :state,
+      :postal_code,
+      :country,
+      :latitude,
+      :longitude,
+      :nightly_price,
+      :cleaning_fee,
+    )
   end
 
   def listing_update_params
     # address cannot be changed on update
-    params.require(:listing).permit(:title, :about, :max_guests, :status)
+    params.require(:listing).permit(:title, :about, :max_guests, :status, :nightly_price, :cleaning_fee)
   end
 
   def set_listing
