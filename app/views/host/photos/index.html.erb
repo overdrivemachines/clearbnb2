@@ -1,4 +1,27 @@
-<div>
-  <h1 class="font-bold text-4xl">Host::Photos#index</h1>
-  <p>Find me in app/views/host/photos/index.html.erb</p>
-</div>
+<h1 class="text-2xl mb-4 font-bold">Photos for <%= @listing.title %></h1>
+
+<p>Total photos: <%= @photos.count %></p>
+
+<%# Upload new photo form %>
+<%= form_with model: [:host, @listing, @photo], class: "space-y-8" do |form| %>
+  <% if @photo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@photo.errors.count, "error") %>
+        prohibited this photo from being saved:</h2>
+
+      <ul>
+        <% @photo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="sm:col-span-6">
+    <%= form.label :caption, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :caption, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <%= form.submit "Upload", class:"py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
+  <%= link_to "Cancel", :back, class:"py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-semibold bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" %>
+<% end %>

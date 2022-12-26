@@ -5,6 +5,7 @@ class Host::PhotosController < ApplicationController
   # GET host/listings/:listing_id/photos
   def index
     @photos = @listing.photos
+    @photo = @listing.photos.build
   end
 
   # POST host/listings/:listing_id/photos
