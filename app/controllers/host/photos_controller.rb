@@ -4,10 +4,20 @@ class Host::PhotosController < ApplicationController
 
   # GET host/listings/:listing_id/photos
   def index
+    @photos = @listing.photos
   end
 
   # POST host/listings/:listing_id/photos
   def create
+    @photo = @listing.photos.new(photo_params)
+
+    if @photo.save
+      flash[:info] = "Photo was saved"
+    else
+      flash[:errors] = @photo.errors.full_messages
+    end
+
+    redirect_to host_listing_photos_path(@listing)
   end
 
   # DELETE host/listings/:listing_id/photos/:id

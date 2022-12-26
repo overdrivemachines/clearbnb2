@@ -22,6 +22,7 @@
 class Listing < ApplicationRecord
   belongs_to :host, class_name: "User"
   has_many :rooms
+  has_many :photos
 
   scope :published, -> { where(status: :published) }
 
