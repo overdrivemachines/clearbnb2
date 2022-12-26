@@ -21,7 +21,7 @@
           <% room.beds.each do |bed| %>
             <p class="mt-1 text-gray-500 text-sm truncate"><%= bed.bed_size.titleize %></p>
           <% end %>
-          <%= button_to "Delete Room", host_listing_room_path(@listing, room), method: :delete, class: "flex justify-center py-2 px-4 mt-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          <%= button_to "Delete Room", host_listing_room_path(@listing, room), method: :delete, class:"mt-4 py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-semibold bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" %>
         </div>
       </div>
     </li>

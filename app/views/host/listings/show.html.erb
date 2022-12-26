@@ -11,5 +11,9 @@
   <%= JSON.pretty_generate(@listing.as_json) %>
 </pre>
 
-<%= link_to "Edit Details", edit_host_listing_path(@listing), class: "py-2 px-4 mt-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-<%= link_to "Edit Rooms", host_listing_rooms_path(@listing), class: "py-2 px-4 mt-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+<div class="mt-4">
+  <%= link_to "Edit Details", edit_host_listing_path(@listing), class:"py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
+</div>
+<div class="mt-4">
+  <%= link_to "Edit Rooms", host_listing_rooms_path(@listing), class:"py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" %>
+</div>
