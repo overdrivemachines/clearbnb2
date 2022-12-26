@@ -4,7 +4,12 @@
   <% @listings.each do |listing| %>
     <div class="max-w-xs">
       <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-        <img class="w-full h-auto rounded-t-xl" src="https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_960_720.jpg" alt="Image Description">
+        <% if !listing.photos.first.nil? && listing.photos.first.photo.attached? %>
+          <%= image_tag listing.photos.first.photo.variant(:host_listings_thumb), class: "w-full h-auto rounded-t-xl" %>
+        <% else %>
+          <img class="w-full h-auto rounded-t-xl" src="https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_960_720.jpg" alt="Image Description">
+
+        <% end %>
         <div class="p-4 md:p-5">
           <h3 class="text-lg font-bold text-gray-800 dark:text-white">
             <%= listing.title %>

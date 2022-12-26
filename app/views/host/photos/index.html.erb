@@ -2,6 +2,17 @@
 
 <p>Total photos: <%= @photos.count %></p>
 
+<div>
+  <% @photos.each do |p| %>
+    <% if p.persisted? %>
+      <div class="my-4">
+        <%= image_tag p.photo.variant(:thumb) %>
+        <p><%= p.caption %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
 <%# Upload new photo form %>
 <%= form_with model: [:host, @listing, @photo], class: "space-y-8" do |form| %>
   <% if @photo.errors.any? %>
@@ -16,6 +27,10 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="sm:col-span-6">
+    <%= form.file_field :photo %>
+  </div>
 
   <div class="sm:col-span-6">
     <%= form.label :caption, class: "block text-sm font-medium text-gray-700" %>
