@@ -3,6 +3,9 @@
 #                                Prefix Verb     URI Pattern                                    Controller#Action
 #                              listings GET      /listings(.:format)                            listings#index
 #                               listing GET      /listings/:id(.:format)                        listings#show
+#                           host_photos GET      /host/photos(.:format)                         host/photos#index
+#                                       POST     /host/photos(.:format)                         host/photos#create
+#                            host_photo DELETE   /host/photos/:id(.:format)                     host/photos#destroy
 #                    host_listing_rooms GET      /host/listings/:listing_id/rooms(.:format)     host/rooms#index
 #                                       POST     /host/listings/:listing_id/rooms(.:format)     host/rooms#create
 #                     host_listing_room DELETE   /host/listings/:listing_id/rooms/:id(.:format) host/rooms#destroy
@@ -47,6 +50,9 @@ Rails.application.routes.draw do
     resources :listings do
       # /host/listings/:listing_id/rooms
       resources :rooms, only: %i[index create destroy]
+
+      # /host/listings/:listing_id/photos
+      resources :photos, only: %i[index create destroy]
     end
   end
 

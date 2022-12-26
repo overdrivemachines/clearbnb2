@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_25_201532) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_25_234504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_201532) do
     t.index ["host_id"], name: "index_listings_on_host_id"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string "caption"
+    t.bigint "listing_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_photos_on_listing_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.bigint "listing_id", null: false
     t.integer "room_type", default: 0
@@ -113,5 +121,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_201532) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "beds", "rooms"
   add_foreign_key "listings", "users", column: "host_id"
+  add_foreign_key "photos", "listings"
   add_foreign_key "rooms", "listings"
 end

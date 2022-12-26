@@ -113,3 +113,14 @@ psql
 - Humanize Select from enum - https://dev.to/masroorhussainv/enum-dropdown-with-capitalized-values-in-rails-144j
 - Create new stimulus controller named room (room_controller.js)
   `rails g stimulus room`
+- Install Active Storage
+  - `rails active storage:install`
+  - `rails db:migrate`
+  - `sudo apt install libvips ffmpeg`
+  - importmap.rb:
+    `pin "@rails/activestorage", to: "activestorage.esm.js"`
+  - application.js:
+    ```js
+    import * as ActiveStorage from "@rails/activestorage";
+    ActiveStorage.start();
+    ```
