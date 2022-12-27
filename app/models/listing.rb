@@ -28,6 +28,7 @@ class Listing < ApplicationRecord
   has_many :photos
 
   scope :published, -> { where(status: :published) }
+  default_scope { order(title: :asc) }
 
   validates :title, presence: true
   validates :max_guests, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
