@@ -21,6 +21,8 @@ gem "image_processing", "~> 1.2"
 
 gem "tailwindcss-rails", "~> 2.0"
 
+gem "stripe"
+
 # Authentication
 gem 'devise'
 gem 'omniauth'

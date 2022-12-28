@@ -114,8 +114,8 @@ GEM
     irb (1.6.2)
       reline (>= 0.3.0)
     jwt (2.6.0)
-    launchy (2.5.0)
-      addressable (~> 2.7)
+    launchy (2.5.2)
+      addressable (~> 2.8)
     letter_opener (1.8.1)
       launchy (>= 2.2, < 3)
     loofah (2.19.1)
@@ -178,7 +178,7 @@ GEM
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
-    rack (2.2.4)
+    rack (2.2.5)
     rack-protection (3.0.5)
       rack
     rack-test (2.0.2)
@@ -246,6 +246,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    stripe (8.0.0)
     tailwindcss-rails (2.0.21-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.2.1)
@@ -294,6 +295,7 @@ DEPENDENCIES
   sassc-rails
   sprockets-rails
   stimulus-rails
+  stripe
   tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
