@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_26_073635) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_061209) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,6 +80,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_073635) do
     t.index ["listing_id"], name: "index_photos_on_listing_id"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "listing_id", null: false
+    t.string "session_id"
+    t.bigint "guest_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guest_id"], name: "index_reservations_on_guest_id"
+    t.index ["listing_id"], name: "index_reservations_on_listing_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.bigint "listing_id", null: false
     t.integer "room_type", default: 0
@@ -125,5 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_073635) do
   add_foreign_key "beds", "rooms"
   add_foreign_key "listings", "users", column: "host_id"
   add_foreign_key "photos", "listings"
+  add_foreign_key "reservations", "listings"
+  add_foreign_key "reservations", "users", column: "guest_id"
   add_foreign_key "rooms", "listings"
 end

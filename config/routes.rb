@@ -3,6 +3,14 @@
 #                                Prefix Verb     URI Pattern                                     Controller#Action
 #                              listings GET      /listings(.:format)                             listings#index
 #                               listing GET      /listings/:id(.:format)                         listings#show
+#                          reservations GET      /reservations(.:format)                         reservations#index
+#                                       POST     /reservations(.:format)                         reservations#create
+#                       new_reservation GET      /reservations/new(.:format)                     reservations#new
+#                      edit_reservation GET      /reservations/:id/edit(.:format)                reservations#edit
+#                           reservation GET      /reservations/:id(.:format)                     reservations#show
+#                                       PATCH    /reservations/:id(.:format)                     reservations#update
+#                                       PUT      /reservations/:id(.:format)                     reservations#update
+#                                       DELETE   /reservations/:id(.:format)                     reservations#destroy
 #                    host_listing_rooms GET      /host/listings/:listing_id/rooms(.:format)      host/rooms#index
 #                                       POST     /host/listings/:listing_id/rooms(.:format)      host/rooms#create
 #                     host_listing_room DELETE   /host/listings/:listing_id/rooms/:id(.:format)  host/rooms#destroy
@@ -45,6 +53,7 @@ Rails.application.routes.draw do
   root "static_pages#index"
 
   resources :listings, only: %i[index show]
+  resources :reservations
 
   namespace :host do
     resources :listings do
