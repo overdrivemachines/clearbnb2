@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_27_061209) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_28_054545) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_061209) do
     t.integer "price"
     t.integer "nightly_price"
     t.integer "cleaning_fee"
+    t.string "stripe_product_id"
     t.index ["host_id"], name: "index_listings_on_host_id"
   end
 
@@ -123,6 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_061209) do
     t.string "uid"
     t.string "provider"
     t.string "avatar_url"
+    t.string "stripe_customer_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid"
