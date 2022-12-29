@@ -26,9 +26,13 @@
 #  uid                    :string
 #  provider               :string
 #  avatar_url             :string
+#  stripe_customer_id     :string
 #
 class User < ApplicationRecord
   has_many :listings, foreign_key: :host_id
+  has_many :reservations, foreign_key: :guest_id
+
+  after_commit :create_stripe_customer, on: %i[create update]
 
   devise :database_authenticatable,
          :registerable,
@@ -53,5 +57,32 @@ class User < ApplicationRecord
       user.avatar_url = auth.info.image # assuming user model has an image
       user.skip_confirmation!
     end
+  end
+
+  private
+
+  def create_stripe_customer
+    # if the user already has a stripe customer id, return
+    return unless stripe_customer_id.blank?
+
+    # Verify that the customer doesn’t already exist
+    # Stripe::Customer.list({email: '{EMAIL_ADDRESS}'})
+
+    # Create a new strip customer
+    # https://stripe.com/docs/api/customers/create?lang=ruby
+    customer =
+      Stripe::Customer.create(
+        {
+          email: email,
+          name: full_name,
+          curency: "usd",
+          livemode: false, # object exists in test mode only
+          metadata: {
+            clearbnb_id: self.id,
+          },
+        },
+      )
+
+    self.update(stripe_customer_id: customer.id)
   end
 end
