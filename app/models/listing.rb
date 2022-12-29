@@ -2,25 +2,26 @@
 #
 # Table name: listings
 #
-#  id            :bigint           not null, primary key
-#  title         :string           not null
-#  about         :text
-#  max_guests    :integer          default(2)
-#  host_id       :bigint           not null
-#  latitude      :string
-#  longitude     :string
-#  address_line1 :string
-#  address_line2 :string
-#  city          :string
-#  state         :string
-#  postal_code   :string
-#  country       :string
-#  status        :integer          default("draft")
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  price         :integer
-#  nightly_price :integer
-#  cleaning_fee  :integer
+#  id                :bigint           not null, primary key
+#  title             :string           not null
+#  about             :text
+#  max_guests        :integer          default(2)
+#  host_id           :bigint           not null
+#  latitude          :string
+#  longitude         :string
+#  address_line1     :string
+#  address_line2     :string
+#  city              :string
+#  state             :string
+#  postal_code       :string
+#  country           :string
+#  status            :integer          default("draft")
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  price             :integer
+#  nightly_price     :integer
+#  cleaning_fee      :integer
+#  stripe_product_id :string
 #
 class Listing < ApplicationRecord
   belongs_to :host, class_name: "User"
