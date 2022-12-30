@@ -28,6 +28,8 @@ class Listing < ApplicationRecord
   has_many :rooms
   has_many :photos
 
+  after_commit :create_stripe_product, on: %i[create update]
+
   scope :published, -> { where(status: :published) }
   default_scope { order(title: :asc) }
 
@@ -40,5 +42,30 @@ class Listing < ApplicationRecord
   # Returns the full address in one line
   def address
     address_line2.blank? ? "#{address_line1} #{city}, #{state}" : "#{address_line1} #{address_line2} #{city}, #{state}"
+  end
+
+  def create_stripe_product
+    # if the listing already has a stripe product id, return
+    return unless stripe_product_id.blank?
+
+    # Create a new Stripe Product
+    # https://stripe.com/docs/api/products/create
+
+    product =
+      Stripe::Product.create(
+        {
+          name: title, # required
+          default_price: nightly_price,
+          description: about,
+          images: [photos.first],
+          metadata: {
+            clearbnb_id: id,
+          },
+          url: Rails.application.routes.url_helpers.full_url_for(self),
+        },
+      )
+
+    # Save the Stripe Product ID to the DB
+    self.update(stripe_product_id: product.id)
   end
 end
