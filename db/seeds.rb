@@ -24,6 +24,8 @@ def create_listings(user)
         status: Listing.statuses.to_a.sample[0],
         latitude: Faker::Address.latitude,
         longitude: Faker::Address.longitude,
+        nightly_price: rand(80..500),
+        cleaning_fee: rand(20..100),
       )
     # Each listing has 1 to 4 rooms
     rand(1...4).times do
@@ -52,3 +54,6 @@ create_listings(user)
 
   create_listings(user)
 end
+
+# Update nightly price and cleaning fee for all listings that have nightly price set to nil
+Listing.where(nightly_price: nil).update_all(nightly_price: 200, cleaning_fee: 60)
