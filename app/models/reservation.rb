@@ -13,4 +13,9 @@
 class Reservation < ApplicationRecord
   belongs_to :listing
   belongs_to :guest, class_name: "User"
+
+  # pending (default) - when reservation is created
+  # booked - when reservation is fully paid
+  # cancelled - reservation payment was cancelled
+  enum status: { pending: 0, booked: 1, cancelled: 2 }
 end
