@@ -31,6 +31,9 @@ module Clearbnb
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    # Required for using Rails.application.routes.url_helpers.full_url_for(...) in the model
+    Rails.application.default_url_options = { host: "localhost", port: "3000" }
+
     # Don't generate system test files.
     config.generators.system_tests = nil
   end
