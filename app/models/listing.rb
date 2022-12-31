@@ -27,6 +27,7 @@ class Listing < ApplicationRecord
   belongs_to :host, class_name: "User"
   has_many :rooms
   has_many :photos
+  has_many :reservations
 
   after_commit :create_stripe_product, on: %i[create update]
 
@@ -45,8 +46,23 @@ class Listing < ApplicationRecord
   end
 
   def create_stripe_product
-    # if the listing already has a stripe product id, return
-    return unless stripe_product_id.blank?
+    # If the listing already has a stripe product id, update the Stripe Product's Name and Description
+    if !stripe_product_id.blank?
+      begin
+        product = Stripe::Product.retrieve(stripe_product_id)
+      rescue Stripe::InvalidRequestError => e
+        # puts e.message
+        # we will create a new stripe product below
+      end
+
+      # If the Stripe product exists, update the product's name and description
+      if !product.blank?
+        # https://stripe.com/docs/api/products/update?lang=ruby
+        Stripe::Product.update(stripe_product_id, { name: title, description: about })
+        # terminate method
+        return
+      end
+    end
 
     # Create a new Stripe Product
     # https://stripe.com/docs/api/products/create
@@ -55,9 +71,8 @@ class Listing < ApplicationRecord
       Stripe::Product.create(
         {
           name: title, # required
-          default_price: nightly_price,
           description: about,
-          images: [photos.first],
+          images: [],
           metadata: {
             clearbnb_id: id,
           },
