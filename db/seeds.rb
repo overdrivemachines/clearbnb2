@@ -57,3 +57,7 @@ end
 
 # Update nightly price and cleaning fee for all listings that have nightly price set to nil
 Listing.where(nightly_price: nil).update_all(nightly_price: 200, cleaning_fee: 60)
+
+Listing.where(stripe_product_id: nil).each { |listing| listing.create_stripe_product }
+
+User.where(stripe_customer_id: nil).each { |user| user.touch }
