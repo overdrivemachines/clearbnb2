@@ -61,27 +61,17 @@ class User < ApplicationRecord
 
   private
 
+  # Create a Stripe Customer Object and save it's id to stripe_customer_id
   def create_stripe_customer
     # if the user already has a stripe customer id, return
     return unless stripe_customer_id.blank?
 
-    # Verify that the customer doesn’t already exist
+    # TODO: Verify that the customer doesn’t already exist
     # Stripe::Customer.list({email: '{EMAIL_ADDRESS}'})
 
     # Create a new strip customer
     # https://stripe.com/docs/api/customers/create?lang=ruby
-    customer =
-      Stripe::Customer.create(
-        {
-          email: email,
-          name: full_name,
-          curency: "usd",
-          livemode: false, # object exists in test mode only
-          metadata: {
-            clearbnb_id: self.id,
-          },
-        },
-      )
+    customer = Stripe::Customer.create({ email: email, name: full_name, metadata: { clearbnb_id: self.id } })
 
     self.update(stripe_customer_id: customer.id)
   end
